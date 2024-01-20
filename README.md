@@ -68,7 +68,7 @@ Every citizen of TUNE is bestowed with inalienable rights, ensuring equality, fr
 Become a Citizen: 
 Becoming a Citizen is FREE, and ALWAYS will be FREE. Embrace a new era of global citizenship. Claim your pending status now and embark on a journey towards full citizenship, where you can shape the destiny of TUNE.  Claim Your Citizenship
 
-Star Tokens - Our Currency: 
+BitCoin - Our Currency: 
 Introducing Star Tokens, the lifeblood of our commerce and exchange, bridging our digital endeavors with earthly transactions." Learn More About Star Tokens
 
 Join the Dialogue: 
