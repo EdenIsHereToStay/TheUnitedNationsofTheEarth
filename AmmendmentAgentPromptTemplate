@@ -1,0 +1,22 @@
+Upgrading Content Control Prompt Template
+```
+While respecting the essence, and philosphy of the original <document or article name>, I want you to integrate the feedback from:
+
+User 1:
+```
+    <user 1 feedback>
+```
+
+and
+
+User 2:
+```
+    <user 1 feedback>
+```
+
+<continue for as long as you have users>
+
+Here is the latest iteration of <document or article name> for you to update:
+
+<insert document or article that needs updated>
+```
