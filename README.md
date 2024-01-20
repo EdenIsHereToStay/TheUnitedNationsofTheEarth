@@ -57,9 +57,10 @@ In the words of Eddie B, TUNE is more than a platform; it's an idea, a set of va
 --------
 
 The United Nations of Earth (TUNE) Uniting Humanity in the Digital Age
-Introduction:Welcome to The United Nations of Earth, a pioneering digital nation that bridges the tangible and intangible, offering every human a place in our shared future. Join us in crafting a world where every voice matters. 
 
-Our Constitution: Crafted with the wisdom of ages and the vision of tomorrow, our Constitution is the bedrock of TUNE. It ensures democracy, safeguards rights, and fosters unity in both the digital and physical realms.  Read the Full Constitution
+Introduction: Welcome to The United Nations of Earth, a pioneering digital nation that bridges the tangible and intangible, offering every human a place in our shared future. Join us in crafting a world where every voice matters. 
+
+Our Constitution: Crafted with the wisdom of ages and the vision of tomorrow, our Constitution is the bedrock of TUNE. It ensures democracy, safeguards rights, and fosters unity in both the digital and physical realms.  Read the Full Constitution
 
 Bill of Rights: 
 Every citizen of TUNE is bestowed with inalienable rights, ensuring equality, freedom, and security. Our Bill of Rights is a testament to our commitment to every individual's dignity and potential.  Explore the Bill of Rights
