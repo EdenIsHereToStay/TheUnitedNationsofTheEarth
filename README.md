@@ -1,72 +1,230 @@
-# The United Nations of the Earth
+# Foundation Protocol MVP
 
-Welcome to the official repository of **The United Nations of the Earth (UNE)**, a visionary project dedicated to establishing a unified, democratic, and technologically empowered global governance system. This repository contains the foundational documents, technical specifications, and resources that guide the development and operation of UNE. Our mission is to extend the principles of democratic republics to every person on Earth, ensuring freedom, equality, and sustainability for all.
+A minimal, open-source "social internet" MVP where users create a self-owned cryptographic identity, post signed messages, and view a global feed over a relay-based network. This is the first working slice of the Foundation Protocol: universal messages + sovereign identity + pluggable network layer.
 
----
+## Features
 
-## Vision and Purpose
-The United Nations of the Earth seeks to unite humanity under a single governance framework that transcends borders, respects cultural diversity, and upholds universal human rights. By leveraging advanced technologies such as artificial intelligence and blockchain, UNE aims to create a system of governance that is transparent, inclusive, and efficient.
+- **Self-Sovereign Identity**: Generate and manage cryptographic keypairs locally in your browser
+- **Signed Messages**: All messages are cryptographically signed and immutable
+- **Global Feed**: View messages from all users in reverse chronological order
+- **Threading**: Reply to messages and view conversation threads
+- **AI Summarization**: Optional AI-powered feed summarization (mock or real provider)
+- **Admin Logs**: View system logs with admin authentication
+- **No Accounts**: No email, no passwords, just cryptographic keys
 
-- **Equality for All**: Upholding equal rights and opportunities for every human being, regardless of nationality, culture, or background.
-- **Transparency and Accountability**: Using technology to ensure that every decision is made transparently and every action is accountable to the people.
-- **Sustainability and Innovation**: Committing to a future where environmental stewardship and sustainable policies are prioritized.
+## Tech Stack
 
----
+- **Next.js 14** - Full-stack React framework
+- **TypeScript** - Type-safe development
+- **SQLite** - Simple database for messages and logs
+- **Web Crypto API** - Cryptographic operations
+- **React** - UI framework
 
-## Contents of the Repository
+## Getting Started
 
-1. **Master Knowledgebase** (`Master_Knowledgebase_v1.txt`)  
-   A comprehensive knowledgebase containing key concepts, terms, and information that underpin the UNE governance model.
+### Prerequisites
 
-2. **Roadmap** (`Roadmap_v1.txt`)  
-   The phased development plan for UNE, outlining short-, mid-, and long-term goals for building a fully autonomous and participatory governance system.
+- Node.js 18+ 
+- npm or yarn
 
-3. **GPT Engineering Instructions** (`GPT_Engineering_Instructions_v1.txt`)  
-   Detailed instructions for developing the custom GPT-based AI Engine that will support and enhance UNE’s governance processes.
+### Installation
 
-4. **Declaration of Independence** (`Declaration_of_Independence_v1.txt`)  
-   The foundational document declaring the principles of freedom, equality, and self-governance for all people of Earth.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd TheUnitedNationsofTheEarth
+```
 
-5. **Constitution** (`Constitution_v1.txt`)  
-   The legal framework for UNE, outlining the structure of governance, rights and responsibilities, and the integration of AI and blockchain technologies.
+2. Install dependencies:
+```bash
+npm install
+```
 
-6. **Bill of Rights** (`Bill_of_Rights_v1.txt`)  
-   A declaration of the universal rights and freedoms guaranteed to every global citizen under UNE governance.
+3. Create a `.env` file (copy from `.env.example`):
+```bash
+PORT=3000
+NODE_ENV=development
+ADMIN_TOKEN=your-secure-random-token-here
+ENABLE_AI_SUMMARY=true
+```
 
-7. **Vision and Overview** (`Vision_and_Overview_v1.txt`)  
-   An overview of UNE’s mission, governance model, technological integration, and call to action for global unity and collaboration.
+4. Seed the database (optional):
+```bash
+npm run db:seed
+```
 
----
+5. Start the development server:
+```bash
+npm run dev
+```
 
-## How to Contribute
-We welcome contributions from individuals and organizations who share our vision for a just and equitable global governance system. Here’s how you can get involved:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-1. **Review and Provide Feedback**: Read through the documents and share your thoughts, suggestions, or questions via GitHub Issues.
-2. **Propose Edits and Enhancements**: Fork the repository, make your changes, and submit a pull request. We value collaborative input and are open to diverse perspectives.
-3. **Engage in Discussions**: Join our community forums and participate in discussions about governance models, technological implementation, and policy proposals.
+## Usage
 
----
+### Creating an Identity
 
-## Building the AI Engine
-Our custom AI engine, **The United Nations of the Earth AI Engine**, will be developed using ChatGPT's Builder, trained on the documents in this repository. The AI will provide guidance on governance, explain the principles and policies of UNE, and facilitate citizen engagement. See the `GPT_Engineering_Instructions_v1.txt` for more details.
+1. Navigate to `/identity`
+2. Click "Create Identity"
+3. A cryptographic keypair will be generated and stored locally in your browser
+4. You can edit your display name at any time
 
----
+### Posting Messages
 
-## License and Open-Source Commitment
-This project is open-source and licensed under [insert license type, e.g., MIT License]. We are committed to transparency and collaboration, and all code and documentation are freely available for public use and contribution.
+1. Navigate to `/feed`
+2. Type your message in the composer
+3. Optionally add tags (comma-separated)
+4. Click "Post"
 
----
+### Viewing Threads
 
-## Contact and Community
-- **Website**: [www.UnitedNationsoftheEarth.com](#)
-- **Community Forum**: [Join Our Discussions](#)
-- **Email**: [contact@unitednationsoftheearth.com](#)
+1. Click "View thread" on any message
+2. See the root message and all replies
+3. Reply directly from the thread page
 
-Together, we can create a world where every voice matters and every person has the opportunity to shape our collective future. Thank you for being part of this movement for global unity and justice.
+### AI Summarization
 
----
+1. On the feed page, click "Summarize Feed (AI)"
+2. The last 20 messages will be summarized
+3. Works with mock provider (default) or real AI API (if configured)
 
-## Acknowledgments
-We extend our deepest gratitude to all contributors, supporters, and visionaries who believe in the mission of the United Nations of the Earth. Your dedication and passion are the driving forces behind this endeavor.
+### Admin Logs
 
----
+1. Navigate to `/admin/logs`
+2. Enter your admin token (set in `ADMIN_TOKEN` env var)
+3. View system logs with filtering options
+
+## API Endpoints
+
+### `POST /api/messages`
+Publish a new message.
+
+**Request:**
+```json
+{
+  "message": {
+    "id": "string",
+    "authorPublicKey": "string",
+    "timestamp": 1234567890,
+    "contentType": "text",
+    "contentBody": "string",
+    "references": [],
+    "tags": [],
+    "signature": "string"
+  }
+}
+```
+
+### `GET /api/messages`
+List messages.
+
+**Query Parameters:**
+- `limit` (optional, default: 50, max: 200)
+- `before` (optional, timestamp for pagination)
+
+### `GET /api/messages/:id`
+Get a specific message by ID.
+
+### `GET /api/messages/:id/replies`
+Get all replies to a message.
+
+### `GET /api/admin/logs`
+Get system logs (requires admin token).
+
+**Headers:**
+- `X-Admin-Token`: Admin authentication token
+
+**Query Parameters:**
+- `level` (optional: "info" | "error")
+- `source` (optional: "api" | "worker")
+- `limit` (optional, default: 100)
+- `before` (optional, timestamp for pagination)
+
+### `POST /api/ai/summarize-feed`
+Summarize a list of messages.
+
+**Request:**
+```json
+{
+  "messages": [...],
+  "maxWords": 100
+}
+```
+
+## Environment Variables
+
+- `PORT` - Server port (default: 3000)
+- `NODE_ENV` - Environment mode (development | production)
+- `ADMIN_TOKEN` - Admin authentication token (required)
+- `AI_API_KEY` - Optional AI provider API key
+- `AI_API_URL` - Optional AI provider URL (default: https://api.openai.com/v1)
+- `ENABLE_AI_SUMMARY` - Enable/disable AI summarization (default: true)
+- `DATABASE_PATH` - Path to SQLite database (default: ./data/foundation.db)
+
+## Project Structure
+
+```
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   ├── identity/          # Identity page
+│   ├── feed/              # Feed page
+│   ├── message/[id]/      # Thread page
+│   └── admin/logs/        # Admin logs page
+├── components/            # React components
+├── lib/                   # Utility libraries
+│   ├── crypto.ts          # Cryptographic functions
+│   ├── db.ts              # Database layer
+│   ├── identity.ts        # Identity management
+│   ├── message.ts         # Message utilities
+│   ├── ai-provider.ts     # AI summarization
+│   └── logger.ts          # Logging utilities
+├── types/                 # TypeScript type definitions
+└── scripts/               # Utility scripts
+```
+
+## Security Notes
+
+- Private keys are stored only in browser localStorage (never sent to server)
+- All messages are cryptographically signed and verified
+- Message IDs are computed from content (immutable)
+- Admin endpoints require token authentication
+- HTTPS should be used in production
+
+## Development
+
+### Running Tests
+
+The project includes acceptance criteria defined in the spec. Manual testing should verify:
+
+1. Identity creation and persistence
+2. Message posting and verification
+3. Feed loading and display
+4. Thread viewing and replies
+5. AI summarization (mock and real)
+6. Admin log access control
+7. Error handling
+
+### Database
+
+The SQLite database is created automatically on first run. To reset:
+
+1. Delete `data/foundation.db`
+2. Restart the server
+
+## Next Steps
+
+Future iterations may include:
+
+- Real P2P networking to replace/complement relay
+- Constitutional constraints
+- Reputation layer (Bayesian legitimacy scores)
+- Multi-device identity sync via encrypted backup
+- Richer content types (JSON payloads, attachments)
+
+## License
+
+Open source - see LICENSE file for details.
+
+## Contributing
+
+Contributions welcome! Please read the spec document for full requirements and architecture details.
